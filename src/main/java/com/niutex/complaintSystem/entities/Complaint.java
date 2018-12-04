@@ -2,14 +2,19 @@ package com.niutex.complaintSystem.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="complaints")
 public class Complaint {
 	
 	@Id
+	@GenericGenerator(name="inc", strategy="increment")
+	@GeneratedValue(generator="inc")
 	@Column(name="id")
 	private Integer complaintId;
 	
@@ -58,7 +63,7 @@ public class Complaint {
 		super();
 	}
 
-	public Complaint(Integer complaintId, String complaintMessage, String senderName, String senderEmail) {
+	public Complaint(String complaintMessage, String senderName, String senderEmail) {
 		super();
 		this.complaintId = complaintId;
 		this.complaintMessage = complaintMessage;
